@@ -18,8 +18,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import rest.asii.dao.TodoDao;
-import rest.asii.model.Todo;
+import rest.asii.dao.ArticlesDao;
+import rest.asii.model.Article;
 
 
 
