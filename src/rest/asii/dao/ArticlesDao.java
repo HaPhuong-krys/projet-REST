@@ -12,9 +12,10 @@ public enum ArticlesDao {
     private Map<String, Article> articles = new HashMap<>();
 
     private ArticlesDao() {
-        Article art = new Article("PC DELL", "Dell", 3000.30, Categorie.PC_PORTABLE);
+    	Object photo = new Object();
+        Article art = new Article("PC DELL", "Dell", 3000.30, Categorie.PC_PORTABLE, photo);
         articles.put("1", art);
-        Article art2 = new Article("PC MAC", "Apple", 3000.30, Categorie.PC_PORTABLE);
+        Article art2 = new Article("PC MAC", "Apple", 3000.30, Categorie.PC_PORTABLE, photo);
         articles.put("1", art);
         articles.put("1", art2);
     }
