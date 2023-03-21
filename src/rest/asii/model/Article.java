@@ -54,7 +54,9 @@ public class Article {
 		this.categorie = categorie;
 	}
     
-    
+    public void affiche() {
+    	System.out.println("hello");
+    }
 
 
 }
