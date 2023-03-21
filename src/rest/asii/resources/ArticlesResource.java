@@ -19,13 +19,14 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
 import rest.asii.dao.ArticlesDao;
-import rest.asii.model.Article;
+import rest.asii.model.*;
+import rest.asii.dao.*;
 
 
 
 /// Will map the resource to the URL todos
-@Path("/todos")
-public class TodosResource {
+@Path("/articles")
+public class ArticlesResource {
 
     // Allows to insert contextual objects into the class,
     // e.g. ServletContext, Request, Response, UriInfo
@@ -37,19 +38,19 @@ public class TodosResource {
     // Return the list of todos to the user in the browser
     @GET
     @Produces(MediaType.TEXT_XML)
-    public List<Todo> getTodosBrowser() {
-        List<Todo> todos = new ArrayList<Todo>();
-        todos.addAll(TodoDao.instance.getModel().values());
+    public List<Article> getArticlesBrowser() {
+        List<Article> todos = new ArrayList<Article>();
+        todos.addAll(ArticlesDao.instance.getModel().values());
         return todos;
     }
 
     // Return the list of todos for applications
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public List<Todo> getTodos() {
-        List<Todo> todos = new ArrayList<Todo>();
-        todos.addAll(TodoDao.instance.getModel().values());
-        return todos;
+    public List<Article> getArticles() {
+        List<Article> articles = new ArrayList<Article>();
+        articles.addAll(ArticlesDao.instance.getModel().values());
+        return articles;
     }
 
     // retuns the number of todos
@@ -59,33 +60,35 @@ public class TodosResource {
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)
     public String getCount() {
-        int count = TodoDao.instance.getModel().size();
+        int count = ArticlesDao.instance.getModel().size();
         return String.valueOf(count);
     }
 
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newTodo(@FormParam("id") String id,
-            @FormParam("summary") String summary,
-            @FormParam("description") String description,
+    public void newArticle(@FormParam("id") String id_a,
+    		@FormParam("id") int id,
+            @FormParam("libelle") String libelle,
+            @FormParam("marque") String marque,
+            @FormParam("prix") double prix,
+            @FormParam("categorie") Categorie categorie,
+            @FormParam("photo") Object photo,            
             @Context HttpServletResponse servletResponse) throws IOException {
-        Todo todo = new Todo(id, summary);
-        if (description != null) {
-            todo.setDescription(description);
-        }
-        TodoDao.instance.getModel().put(id, todo);
+        Article art = new Article(id, libelle, marque, prix, categorie, photo);
 
-        servletResponse.sendRedirect("../create_todo.html");
+        ArticlesDao.instance.getModel().put(id_a, art);
+
+        servletResponse.sendRedirect("../create_article.html");
     }
 
     // Defines that the next path parameter after todos is
     // treated as a parameter and passed to the TodoResources
     // Allows to type http://localhost:8080/rest.todo/rest/todos/1
     // 1 will be treaded as parameter todo and passed to TodoResource
-    @Path("{todo}")
-    public TodoResource getTodo(@PathParam("todo") String id) {
-        return new TodoResource(uriInfo, request, id);
+    @Path("{article}")
+    public ArticleResource getTodo(@PathParam("article") String id) {
+        return new ArticleResource(uriInfo, request, id);
     }
 
 }

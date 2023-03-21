@@ -14,15 +14,17 @@ import javax.xml.bind.JAXBElement;
 
 import rest.asii.dao.ArticlesDao;
 import rest.asii.model.Article;
+import rest.asii.dao.*;
+import rest.asii.model.*;
 
 
-public class TodoResource {
+public class ArticleResource {
     @Context
     UriInfo uriInfo;
     @Context
     Request request;
     String id;
-    public TodoResource(UriInfo uriInfo, Request request, String id) {
+    public ArticleResource(UriInfo uriInfo, Request request, String id) {
         this.uriInfo = uriInfo;
         this.request = request;
         this.id = id;
@@ -31,18 +33,18 @@ public class TodoResource {
     //Application integration
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Article getTodo() {
-        Article todo = ArticlesDao.instance.getModel().get(id);
-        if(todo==null)
-            throw new RuntimeException("Get: Todo with " + id +  " not found");
-        return todo;
+    public Article getArticle() {
+        Article art = ArticlesDao.instance.getModel().get(id);
+        if(art==null)
+            throw new RuntimeException("Get: Article with " + id +  " not found");
+        return art;
     }
 
     // for the browser
     @GET
     @Produces(MediaType.TEXT_XML)
     public Article getTodoHTML() {
-        Article art = ArticlesDAO.inArtstance.getModel().get(id);
+        Article art = ArticlesDao.instance.getModel().get(id);
         if(art==null)
             throw new RuntimeException("Get: Todo with " + id +  " not found");
         return art;
@@ -50,26 +52,26 @@ public class TodoResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
-    public Response putTodo(JAXBElement<Todo> todo) {
-        Article c = todo.getValue();
-        return putAndGetResponse(c);
+    public Response putTodo(JAXBElement<Article> todo) {
+        Article art = todo.getValue();
+        return putAndGetResponse(art);
     }
 
     @DELETE
     public void deleteTodo() {
-        Article a = Article.instance.getModel().remove(id);
-        if(a==null)
-            throw new RuntimeException("Delete: Todo with " + id +  " not found");
+        Article art = ArticlesDao.instance.getModel().remove(id);
+        if(art==null)
+            throw new RuntimeException("Delete: Article with " + id +  " not found");
     }
 
-    private Response putAndGetResponse(Todo todo) {
+    private Response putAndGetResponse(Article art) {
         Response res;
-        if(ArticlesDao.instance.getModel().containsKey(todo.getId())) {
+        if(ArticlesDao.instance.getModel().containsKey(art.getLibelle())) {
             res = Response.noContent().build();
         } else {
             res = Response.created(uriInfo.getAbsolutePath()).build();
         }
-        ArticlesDao.instance.getModel().put(todo.getId(), todo);
+        ArticlesDao.instance.getModel().put(art.getLibelle(), art);
         return res;
     }
 

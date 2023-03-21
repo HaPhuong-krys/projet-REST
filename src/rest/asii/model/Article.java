@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Article {
 	
+	private int id;
     private String libelle;
     private String marque;
     private double prix;
@@ -16,12 +17,21 @@ public class Article {
 
     }
     
-    public Article (String libelle, String marque, double prix, Categorie categorie, Object photo){
-        this.libelle = libelle;
+    public Article (int id, String libelle, String marque, double prix, Categorie categorie, Object photo){
+        this.id = id;
+    	this.libelle = libelle;
         this.marque = marque;
         this.prix = prix;
         this.categorie = categorie;
         this.photo = photo;
+    }
+    
+    public int getId() {
+    	return this.id;
+    }
+    
+    public void setId(int id) {
+    	this.id = id;
     }
 
 	public String getLibelle() {

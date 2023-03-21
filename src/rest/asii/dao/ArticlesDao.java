@@ -13,9 +13,9 @@ public enum ArticlesDao {
 
     private ArticlesDao() {
     	Object photo = new Object();
-        Article art = new Article("PC DELL", "Dell", 3000.30, Categorie.PC_PORTABLE, photo);
+        Article art = new Article(1, "PC DELL", "Dell", 3000.30, Categorie.PC_PORTABLE, photo);
         articles.put("1", art);
-        Article art2 = new Article("PC MAC", "Apple", 3000.30, Categorie.PC_PORTABLE, photo);
+        Article art2 = new Article(2, "PC MAC", "Apple", 3000.30, Categorie.PC_PORTABLE, photo);
         articles.put("1", art);
         articles.put("1", art2);
     }
