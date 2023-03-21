@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.JAXBElement;
 
-import rest.asii.dao.TodoDao;
-import rest.asii.model.Todo;
+import rest.asii.dao.ArticlesDao;
+import rest.asii.model.Article;
 
 
 public class TodoResource {
@@ -31,8 +31,8 @@ public class TodoResource {
     //Application integration
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Todo getTodo() {
-        Todo todo = TodoDao.instance.getModel().get(id);
+    public Article getTodo() {
+        Article todo = ArticlesDao.instance.getModel().get(id);
         if(todo==null)
             throw new RuntimeException("Get: Todo with " + id +  " not found");
         return todo;
@@ -42,7 +42,7 @@ public class TodoResource {
     @GET
     @Produces(MediaType.TEXT_XML)
     public Todo getTodoHTML() {
-        Todo todo = TodoDao.instance.getModel().get(id);
+        Todo todo = TodoDao.inArtstance.getModel().get(id);
         if(todo==null)
             throw new RuntimeException("Get: Todo with " + id +  " not found");
         return todo;
@@ -57,8 +57,8 @@ public class TodoResource {
 
     @DELETE
     public void deleteTodo() {
-        Todo c = TodoDao.instance.getModel().remove(id);
-        if(c==null)
+        Article a = Article.instance.getModel().remove(id);
+        if(a==null)
             throw new RuntimeException("Delete: Todo with " + id +  " not found");
     }
 

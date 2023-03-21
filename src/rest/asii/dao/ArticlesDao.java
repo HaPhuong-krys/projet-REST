@@ -17,7 +17,6 @@ public enum ArticlesDao {
         Article art2 = new Article("PC MAC", "Apple", 3000.30, Categorie.PC_PORTABLE);
         articles.put("1", art);
         articles.put("1", art2);
-
     }
     
     public Map<String, Article> getModel(){

@@ -10,16 +10,18 @@ public class Article {
     private String marque;
     private double prix;
     private Categorie categorie;
+    private Object photo;
 
     public Article(){
 
     }
     
-    public Article (String libelle, String marque, double prix, Categorie categorie){
+    public Article (String libelle, String marque, double prix, Categorie categorie, Object photo){
         this.libelle = libelle;
         this.marque = marque;
         this.prix = prix;
         this.categorie = categorie;
+        this.photo = photo;
     }
 
 	public String getLibelle() {
@@ -54,9 +56,13 @@ public class Article {
 		this.categorie = categorie;
 	}
     
-    public void affiche() {
-    	System.out.println("hello");
-    }
+	public Object getPhoto() {
+		return this.photo;
+	}
+	
+	public void setPhoto(Object photo) {
+		this.photo = photo;
+	}
 
 
 }
