@@ -43,7 +43,7 @@ public class ArticleResource {
     // for the browser
     @GET
     @Produces(MediaType.TEXT_XML)
-    public Article getTodoHTML() {
+    public Article getArticleHTML() {
         Article art = ArticlesDao.instance.getModel().get(id);
         if(art==null)
             throw new RuntimeException("Get: Todo with " + id +  " not found");
@@ -52,13 +52,13 @@ public class ArticleResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
-    public Response putTodo(JAXBElement<Article> todo) {
+    public Response putArticle(JAXBElement<Article> todo) {
         Article art = todo.getValue();
         return putAndGetResponse(art);
     }
 
     @DELETE
-    public void deleteTodo() {
+    public void deleteArticle() {
         Article art = ArticlesDao.instance.getModel().remove(id);
         if(art==null)
             throw new RuntimeException("Delete: Article with " + id +  " not found");

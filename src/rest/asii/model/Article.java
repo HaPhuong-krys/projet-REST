@@ -2,22 +2,23 @@ package rest.asii.model;
 
 
 import javax.xml.bind.annotation.XmlRootElement;
+import rest.asii.model.Categorie;
 
 @XmlRootElement
 public class Article {
 	
-	private int id;
+	private String id;
     private String libelle;
     private String marque;
     private double prix;
     private Categorie categorie;
-    private Object photo;
+    private String photo;
 
     public Article(){
 
     }
     
-    public Article (int id, String libelle, String marque, double prix, Categorie categorie, Object photo){
+    public Article (String id, String libelle, String marque, double prix, Categorie categorie, String photo){
         this.id = id;
     	this.libelle = libelle;
         this.marque = marque;
@@ -26,11 +27,11 @@ public class Article {
         this.photo = photo;
     }
     
-    public int getId() {
+    public String getId() {
     	return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(String id) {
     	this.id = id;
     }
 
@@ -66,11 +67,11 @@ public class Article {
 		this.categorie = categorie;
 	}
     
-	public Object getPhoto() {
+	public String getPhoto() {
 		return this.photo;
 	}
 	
-	public void setPhoto(Object photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 

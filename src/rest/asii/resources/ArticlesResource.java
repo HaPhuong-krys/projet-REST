@@ -24,7 +24,7 @@ import rest.asii.dao.*;
 
 
 
-/// Will map the resource to the URL todos
+/// Will map the resource to the URL articles
 @Path("/articles")
 public class ArticlesResource {
 
@@ -35,16 +35,16 @@ public class ArticlesResource {
     @Context
     Request request;
 
-    // Return the list of todos to the user in the browser
+    // Return the list of articles to the user in the browser
     @GET
     @Produces(MediaType.TEXT_XML)
     public List<Article> getArticlesBrowser() {
-        List<Article> todos = new ArrayList<Article>();
-        todos.addAll(ArticlesDao.instance.getModel().values());
-        return todos;
+        List<Article> articles = new ArrayList<Article>();
+        articles.addAll(ArticlesDao.instance.getModel().values());
+        return articles;
     }
 
-    // Return the list of todos for applications
+    // Return the list of articles for applications
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     public List<Article> getArticles() {
@@ -53,8 +53,8 @@ public class ArticlesResource {
         return articles;
     }
 
-    // retuns the number of todos
-    // Use http://localhost:8080/com.vogella.jersey.todo/rest/todos/count
+    // returns the number of articles
+    // Use http://localhost:8080/rest.asii/rest/articles/count
     // to get the total number of records
     @GET
     @Path("count")
@@ -67,20 +67,21 @@ public class ArticlesResource {
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newArticle(@FormParam("id") String id_a,
-    		@FormParam("id") int id,
+    public void newArticle(@FormParam("id") String id,
             @FormParam("libelle") String libelle,
             @FormParam("marque") String marque,
             @FormParam("prix") double prix,
             @FormParam("categorie") Categorie categorie,
-            @FormParam("photo") Object photo,            
+            @FormParam("photo") String photo,            
             @Context HttpServletResponse servletResponse) throws IOException {
+        
         Article art = new Article(id, libelle, marque, prix, categorie, photo);
 
-        ArticlesDao.instance.getModel().put(id_a, art);
+        ArticlesDao.instance.getModel().put(id, art);
 
         servletResponse.sendRedirect("../create_article.html");
     }
+
 
     // Defines that the next path parameter after todos is
     // treated as a parameter and passed to the TodoResources
