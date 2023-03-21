@@ -41,17 +41,17 @@ public class TodoResource {
     // for the browser
     @GET
     @Produces(MediaType.TEXT_XML)
-    public Todo getTodoHTML() {
-        Todo todo = TodoDao.inArtstance.getModel().get(id);
-        if(todo==null)
+    public Article getTodoHTML() {
+        Article art = ArticlesDAO.inArtstance.getModel().get(id);
+        if(art==null)
             throw new RuntimeException("Get: Todo with " + id +  " not found");
-        return todo;
+        return art;
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
     public Response putTodo(JAXBElement<Todo> todo) {
-        Todo c = todo.getValue();
+        Article c = todo.getValue();
         return putAndGetResponse(c);
     }
 
@@ -64,12 +64,12 @@ public class TodoResource {
 
     private Response putAndGetResponse(Todo todo) {
         Response res;
-        if(TodoDao.instance.getModel().containsKey(todo.getId())) {
+        if(ArticlesDao.instance.getModel().containsKey(todo.getId())) {
             res = Response.noContent().build();
         } else {
             res = Response.created(uriInfo.getAbsolutePath()).build();
         }
-        TodoDao.instance.getModel().put(todo.getId(), todo);
+        ArticlesDao.instance.getModel().put(todo.getId(), todo);
         return res;
     }
 
