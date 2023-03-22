@@ -17,9 +17,9 @@ public enum ArticlesDao {
     private ArticlesDao() {}
        
  		String driver = "com.mysql.jdbc.Driver";
- 		String url = "jdbc:mysql://localhost:3306/asii";
+ 		String url = "jdbc:mysql://localhost:3306/articles";
  		String user = "root";
- 		String pass = "root";
+ 		String pass = "krystal141198";
  		Connection cn = null;
  		Statement statement = null;
  		ResultSet rs = null;
