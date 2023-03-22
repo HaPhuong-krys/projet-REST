@@ -10,11 +10,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-
 import rest.asii.dao.ArticlesDao;
 import rest.asii.model.Article;
-import rest.asii.dao.*;
-import rest.asii.model.*;
 
 public class ArticleResource {
     @Context
