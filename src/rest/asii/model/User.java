@@ -1,5 +1,5 @@
 package rest.asii.model;
-import javax.xml.bind.annotation.XmlRootElement;
+
 
 public class User {
 
