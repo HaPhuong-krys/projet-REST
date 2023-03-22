@@ -1,4 +1,4 @@
-package rest.asii.model;
+ package rest.asii.model;
 
 
 import rest.asii.model.Categorie;
