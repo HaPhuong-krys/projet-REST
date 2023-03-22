@@ -1,10 +1,9 @@
  package rest.asii.model;
 
 
-import javax.xml.bind.annotation.XmlRootElement;
 import rest.asii.model.Categorie;
 
-@XmlRootElement
+
 public class Article {
 	
 	private String id;

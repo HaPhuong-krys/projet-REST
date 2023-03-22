@@ -10,13 +10,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.bind.JAXBElement;
 
 import rest.asii.dao.ArticlesDao;
 import rest.asii.model.Article;
 import rest.asii.dao.*;
 import rest.asii.model.*;
-
 
 public class ArticleResource {
     @Context
@@ -52,8 +50,8 @@ public class ArticleResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
-    public Response putArticle(JAXBElement<Article> todo) {
-        Article art = todo.getValue();
+    public Response putArticle(Article todo) {
+        Article art = todo;
         return putAndGetResponse(art);
     }
 
