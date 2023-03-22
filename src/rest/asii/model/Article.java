@@ -1,4 +1,4 @@
-package rest.asii.model;
+ package rest.asii.model;
 
 
 import javax.xml.bind.annotation.XmlRootElement;
