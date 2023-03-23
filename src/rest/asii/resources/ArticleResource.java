@@ -13,7 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import rest.asii.dao.ArticlesDao;
 import rest.asii.model.Article;
 
-public class ArticleResource {
+public class ArticleResource { 
     @Context
     UriInfo uriInfo;
     @Context
@@ -26,15 +26,14 @@ public class ArticleResource {
     }
 
     //Application integration
-    @GET
+   /* @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Article getArticle() {
         Article art = ArticlesDao.instance.getModel().get(id);
         if(art==null)
             throw new RuntimeException("Get: Article with " + id +  " not found");
         return art;
-    }
-
+    } 
     // for the browser
     @GET
     @Produces(MediaType.TEXT_XML)
@@ -68,7 +67,7 @@ public class ArticleResource {
         }
         ArticlesDao.instance.getModel().put(art.getLibelle(), art);
         return res;
-    }
+    }*/
 
 
 

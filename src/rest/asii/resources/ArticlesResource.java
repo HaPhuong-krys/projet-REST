@@ -35,24 +35,30 @@ public class ArticlesResource {
     @Context
     Request request;
 
+    GestionArticles g = new GestionArticles();
+    
+    
     // Return the list of articles to the user in the browser
     @GET
     @Produces(MediaType.TEXT_XML)
     public List<Article> getArticlesBrowser() {
         List<Article> articles = new ArrayList<Article>();
-        articles.addAll(ArticlesDao.instance.getModel().values());
+        articles.addAll(g.testerBD());
         return articles;
     }
 
+    
+    
     // Return the list of articles for applications
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     public List<Article> getArticles() {
         List<Article> articles = new ArrayList<Article>();
-        articles.addAll(ArticlesDao.instance.getModel().values());
+        articles.addAll(g.testerBD());
         return articles;
     }
 
+    
     // returns the number of articles
     // Use http://localhost:8080/rest.asii/rest/articles/count
     // to get the total number of records
@@ -60,10 +66,12 @@ public class ArticlesResource {
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)
     public String getCount() {
-        int count = ArticlesDao.instance.getModel().size();
+        int count = 0;//ArticlesDao.instance.getModel().size();
         return String.valueOf(count);
     }
 
+    
+    
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -71,13 +79,13 @@ public class ArticlesResource {
             @FormParam("libelle") String libelle,
             @FormParam("marque") String marque,
             @FormParam("prix") double prix,
-            @FormParam("categorie") Categorie categorie,
+            @FormParam("categorie") String categorie,
             @FormParam("photo") String photo,            
             @Context HttpServletResponse servletResponse) throws IOException {
         
         Article art = new Article(id, libelle, marque, prix, categorie, photo);
 
-        ArticlesDao.instance.getModel().put(id, art);
+        //ArticlesDao.instance.getModel().put(id, art);
 
         servletResponse.sendRedirect("../create_article.html");
     }
@@ -88,7 +96,7 @@ public class ArticlesResource {
     // Allows to type http://localhost:8080/rest.todo/rest/todos/1
     // 1 will be treaded as parameter todo and passed to TodoResource
     @Path("{article}")
-    public ArticleResource getTodo(@PathParam("article") String id) {
+    public ArticleResource getArticle(@PathParam("article") String id) {
         return new ArticleResource(uriInfo, request, id);
     }
 

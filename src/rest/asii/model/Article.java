@@ -10,14 +10,14 @@ public class Article {
     private String libelle;
     private String marque;
     private double prix;
-    private Categorie categorie;
+    private String categorie;
     private String photo;
 
     public Article(){
 
     }
     
-    public Article (String id, String libelle, String marque, double prix, Categorie categorie, String photo){
+    public Article (String id, String libelle, String marque, double prix, String categorie, String photo){
         this.id = id;
     	this.libelle = libelle;
         this.marque = marque;
@@ -58,11 +58,11 @@ public class Article {
 		this.prix = prix;
 	}
 
-	public Categorie getCategorie() {
+	public String getCategorie() {
 		return categorie;
 	}
 
-	public void setCategorie(Categorie categorie) {
+	public void setCategorie(String categorie) {
 		this.categorie = categorie;
 	}
     

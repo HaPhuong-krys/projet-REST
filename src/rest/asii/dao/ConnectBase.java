@@ -21,29 +21,5 @@ public class ConnectBase {
 	        return conn;
 	    }
 
-		public static void main(String args[]) {
-			String url = "jdbc:mysql://localhost/articles";
-			 String user = "root";
-			 String pass = "krystal141198";
-	        try {
-	           
-	            Connection conn = getConnection(url, user, pass);
-	          
-	            Statement stmt = conn.createStatement();
-	          
-	            ResultSet rs = stmt.executeQuery("select * from articles");
-	      
-	            while (rs.next()) {
-	                System.out.println(rs.getInt(1) + "  " + rs.getString(2) 
-	                        + "  " + rs.getString(3));
-	            }
-	            
-	            conn.close();
-	        } catch (Exception ex) {
-	            ex.printStackTrace();
-	        }
-	    }
-	 
-	 
-
+	
 	}
