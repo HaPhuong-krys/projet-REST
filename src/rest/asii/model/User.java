@@ -4,17 +4,21 @@ package rest.asii.model;
 public class User {
 
 	private int id;
-	public String nom;
-	public String prenom;
-	public String adresse;
+	private String nom;
+	private String login;
+	private String passwd;
 	private String role;
-	
-	public User(String nom, String prenom, String adresse) {
+		
+	public User() {}
+	public User(int id, String nom, String login, String passwd, String role) {
+		super();
+		this.id = id;
 		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
+		this.login = login;
+		this.passwd = passwd;
+		this.role = role;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -27,21 +31,25 @@ public class User {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getPrenom() {
-		return prenom;
+	
+
+	public String getLogin() {
+		return login;
 	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setLogin(String login) {
+		this.login = login;
 	}
-	public String getAdresse() {
-		return adresse;
+	public String getPasswd() {
+		return passwd;
 	}
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setPasswd(String pass) {
+		this.passwd = pass;
 	}
+
 	public String getRole() {
 		return role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}

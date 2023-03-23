@@ -13,19 +13,18 @@ import java.util.*;
 
 public class GestionArticles {
 	
+	String driver = "com.mysql.cj.jdbc.Driver";
+	String url = "jdbc:mysql://localhost:3306/asii?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris";
+	String user = "root";
+	String pass = "root";
+	Connection cn = null;
+	Statement statement = null;
+	ResultSet rs = null;
+	
 	private List<Article> articles = new ArrayList<>();
 	
 	
 	public List<Article> testerBD() {
-
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/asii?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris";
-		String user = "root";
-		String pass = "root";
-
-		Connection cn = null;
-		Statement statement = null;
-		ResultSet rs = null;
 
 		try {
 			
